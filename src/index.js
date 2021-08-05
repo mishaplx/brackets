@@ -1,8 +1,12 @@
 module.exports = function check(str, bracketsConfig) {
-  let newStrArr = str.split("");
-  if (newStrArr.length % 2 != 0) {
-    return false;
-  } else {
-    return true;
-  }
-};
+   
+    let newBracketsConfig = bracketsConfig.map((el) => el.join(''))
+    for (let i = 0; i < newBracketsConfig.length; i++) {
+        const element = newBracketsConfig[i];
+        if (str.includes(element)) {
+            return check(str.split(element).join(''), bracketsConfig)
+        }
+    }
+    return str.length == 0
+ 
+}
